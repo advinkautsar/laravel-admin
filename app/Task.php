@@ -13,4 +13,8 @@ class Task extends Model
         'ket_tugas',
         'status_tugas',
     ];
+
+    public function kategori(){
+        return $this->belongsTo(kategori::class);
+    }
 }
