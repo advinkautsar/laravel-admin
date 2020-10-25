@@ -44,9 +44,18 @@
 
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">{{$pagename}}</strong>
+
+                        @if(session()->get('sukses'))
+                            <div class="alert alert-success">
+                                {{session()->get('sukses')}}
                             </div>
+                        @endif
+
+                        <div class="card-header">
+                                <strong class="card-title">{{$pagename}}</strong>
+                                <a href="{{route('kategori.create')}}" class="btn btn-primary pull-right">Tambah</a>
+                            </div>
+                            
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
@@ -54,6 +63,10 @@
                                             <th>Nomor</th>
                                             <th>Nama</th>
                                             <th>Status</th>
+                                            <th>Keterangan Kateogori</th>
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -61,7 +74,21 @@
                                         <tr>
                                             <td>{{++$i}}</td>
                                             <td>{{$row->nama_kategori}}</td>
-                                            <td>{{$row->status_kategori}}</td>                                        </tr>
+                                            <td>{{$row->status_kategori}}</td>
+                                            <td>{{$row->ket_kategori}}</td>
+                                            <td>                                           
+                                            
+                                            <a href="{{route('kategori.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                                            
+                                            </td>
+                                            <td>
+                                                <form action="{{route('kategori.destroy',$row->id)}}" method='post'>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger" type="submit">Hapus</button>
+                                                </form>                             
+                                            </td>     
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>

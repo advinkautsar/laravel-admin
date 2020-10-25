@@ -80,7 +80,12 @@
                                             <td>{{$row->id_kategori}}</td>
                                             <td>{{$row->ket_tugas}}</td>                                       
                                             <td>{{$row->status_tugas}}</td>     
-                                            <td><a href="{{route('tugas.edit',$row->id)}}" class="btn btn-warning">Edit</a></td>
+                                            <td>
+                                            
+                                            
+                                            <a href="{{route('tugas.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+                                            
+                                            </td>
                                             <td>
                                                 <form action="{{route('tugas.destroy',$row->id)}}" method='post'>
                                                 @csrf

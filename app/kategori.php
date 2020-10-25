@@ -11,4 +11,10 @@ class kategori extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    protected $fillable = [
+        'nama_kategori',
+        'ket_kategori',
+        'status_kategori',
+    ];
 }
