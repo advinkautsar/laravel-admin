@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -21,7 +22,7 @@ class AuthController extends Controller
         $user = new User([
             'name'      => $request->name,
             'email'     => $request->email,
-            'password'  => bycrpt($request->password),
+            'password'  => bcrypt($request->password),
         ]);
 
         $user->save();
@@ -33,8 +34,8 @@ class AuthController extends Controller
     {           
         //validasi data
         $validateData = $request->validate([
-            'email'     => 'email | required | unique:users',
-            'password'  => 'required | confirmed',
+            'email'     => 'email | required',
+            'password'  => 'required',
         ]);
 
         $login_detail = request(['email','password']);
