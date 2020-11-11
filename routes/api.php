@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('tugas','ApiController@tugas');
+Route::post('register','API\Auth\AuthController@register');
+
