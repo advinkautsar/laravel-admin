@@ -19,7 +19,7 @@ class TugasController extends Controller
 
     public function store(Request $request)
     {
-        $validateData->$request->validate([
+        $validateData = $request->validate([
             'id'            => 'required',
             'nama_tugas'    => 'required',
             'id_kategori'   => 'required',
@@ -41,7 +41,7 @@ class TugasController extends Controller
 
     public function update(Request $request)
     {
-        $validateData->$request->validate([
+        $validateData=$request->validate([
             'id'            => 'required',
             'nama_tugas'    => 'required',
             'id_kategori'   => 'required',
@@ -66,8 +66,11 @@ class TugasController extends Controller
         $data = Task::where('id','=', $request->id)->first();
 
         if(!empty($data)){
-            $data->detelet();
-            return response()->json($data, 200);
+            $data->delete();
+            return response()->json([
+                'message' => 'Tugas Berhasil Dihapus',
+                'data yang terhapus adalah' => $data]
+                , 200);
         }else{
             return response()->json([
                 'error' => 'Data Tidak Ditemukan'
