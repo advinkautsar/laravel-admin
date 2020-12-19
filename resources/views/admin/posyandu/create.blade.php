@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
     <link rel="stylesheet" href="{{asset('public/vendors/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/vendors/font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/vendors/themify-icons/css/themify-icons.css')}}">
@@ -16,7 +14,6 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
   
-
 <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
@@ -30,8 +27,8 @@
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Table</a></li>
-                            <li class="active">{{$pagename}}</li>
+                            <li><a href="#">Posyandu</a></li>
+                            <li class="active">Buat</li>
                         </ol>
                     </div>
                 </div>
@@ -40,61 +37,48 @@
 
         <div class="content mt-3">
             <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-
-                        @if(session()->get('sukses'))
-                            <div class="alert alert-success">
-                                {{session()->get('sukses')}}
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>{{$pagename}}</strong>
+                        </div>
+                        <div class="card-body card-block">
+                        
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <div class="list-group">
+                                    @foreach($errors->all() as $error)
+                                    <li class="list-group-item">
+                                    {{$error}}
+                                    </li>
+                                    @endforeach
+                                </div>
                             </div>
                         @endif
 
-                        <div class="card-header">
-                                <strong class="card-title">{{$pagename}}</strong>
-                                <a href="{{route('kategori.create')}}" class="btn btn-primary pull-right">Tambah</a>
-                            </div>
-                            
-                            <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Nomor</th>
-                                            <th>Nama</th>
-                                            <th>Status</th>
-                                            <th>Edit</th>
-                                            <th>Hapus</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($data as $i=>$row)
-                                        <tr>
-                                            <td>{{++$i}}</td>
-                                            <td>{{$row->nama_kategori}}</td>
-                                            <td>{{$row->status_kategori}}</td>
-                                            <td>                                           
-                                            
-                                            <a href="{{route('kategori.edit',$row->id)}}" class="btn btn-warning">Edit</a>
-                                            
-                                            </td>
-                                            <td>
-                                                <form action="{{route('kategori.destroy',$row->id)}}" method='post'>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger" type="submit">Hapus</button>
-                                                </form>                             
-                                            </td>     
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
+                            <form action="{{route('posyandu.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                               @csrf
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Posyandu</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="txt_namaposyandu" placeholder="Text" class="form-control"><small class="form-text text-muted">Isikan dengan nama posyandu yang ingin ditambahkan</small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Alamat Posyandu</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="txt_alamatposyandu" placeholder="Text" class="form-control"><small class="form-text text-muted">Isikan dengan alamat posyandu yang ingin ditambahkan</small></div>
+                                </div>
+                               
+                                    
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="ti-save"></i> Simpan
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="ti-reload"></i> Reset
+                                    </button>
+                       
+                            </form>
                         </div>
+                        
                     </div>
-
-
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->

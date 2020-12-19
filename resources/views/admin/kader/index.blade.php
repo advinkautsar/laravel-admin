@@ -51,41 +51,56 @@
                             </div>
                         @endif
 
-                        <div class="card-header">
+
+                            <div class="card-header">
                                 <strong class="card-title">{{$pagename}}</strong>
-                                <a href="{{route('kategori.create')}}" class="btn btn-primary pull-right">Tambah</a>
+                                <a href="{{route('kader.create')}}" class="btn btn-primary pull-right">Tambah</a>
                             </div>
-                            
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Nomor</th>
-                                            <th>Nama</th>
-                                            <th>Status</th>
+                                            <th>Nama Kader</th>
+                                            <th>Posyandu</th>
+                                            <th>Alamat Kader</th>
+                                            <th>Telp Kader</th>
+                                            <th>Password</th>                                            
                                             <th>Edit</th>
                                             <th>Hapus</th>
+
+
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($data as $i=>$row)
                                         <tr>
-                                            <td>{{++$i}}</td>
-                                            <td>{{$row->nama_kategori}}</td>
-                                            <td>{{$row->status_kategori}}</td>
-                                            <td>                                           
+                                            <td class="text-center">{{++$i}}</td>
+                                            <td>{{$row->nama_kader}}</td>
+                                            <td>{{$row->posyandu->nama_posyandu}}
+                                            </td>
+                                            <td>{{$row->alamat_kader}}</td>                                       
+                                            <td>{{$row->telp_kader}}</td>     
+                                            <td>{{$row->password}}</td>     
+                                            <td>
                                             
-                                            <a href="{{route('kategori.edit',$row->id)}}" class="btn btn-warning">Edit</a>
+
+                                            
+    
+                                            <a href="{{route('kader.edit',$row->id)}}" class="btn btn-warning">Edit</a>
                                             
                                             </td>
                                             <td>
-                                                <form action="{{route('kategori.destroy',$row->id)}}" method='post'>
+                                                <form action="{{route('kader.destroy',$row->id)}}" method='post'>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit">Hapus</button>
                                                 </form>                             
                                             </td>     
+
+                                                                            
+
                                         </tr>
                                     @endforeach
                                     </tbody>

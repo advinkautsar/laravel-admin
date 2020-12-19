@@ -15,7 +15,11 @@
                         <a href="{{url('admin/')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                         <a href="{{url('admin/kategori')}}"> <i class="menu-icon fa fa-book"></i>Kategori </a>
                         <a href="{{url('admin/tugas')}}"> <i class="menu-icon fa  fa-thumb-tack"></i>Tugas </a>
-                        <a href="{{url('admin/jabatan')}}"> <i class="menu-icon fa  fa-thumb-tack"></i>Ninik Wulandari </a>
+                        <a href="{{url('admin/jabatan')}}"> <i class="menu-icon fa  fa-thumb-tack"></i> Advin Kautsar </a>
+                        <a href="{{url('admin/posyandu')}}"> <i class="menu-icon fa  fa-thumb-tack"></i> Posyandu </a>
+                        <a href="{{url('admin/kader')}}"> <i class="menu-icon fa  fa-thumb-tack"></i> Kader </a>
+
+
 
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->

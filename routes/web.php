@@ -30,6 +30,8 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('/kategori','Admin\KategoriController');
     Route::resource('/tugas','Admin\TugasController');
     Route::resource('/jabatan','Admin\JabatanController');
+    Route::resource('/posyandu','Admin\PosyanduController');
+    Route::resource('/kader','Admin\KaderController');
 
 
 });

@@ -32,3 +32,22 @@ Route::group(['prefix'=>'tugas'],function(){
 });
 
 
+Route::group(['prefix'=>'posyandu'],function(){
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::post('tambah','API\Posyandu\PosyanduController@store');
+        Route::post('update','API\Posyandu\PosyanduController@update');
+        Route::get('read','API\Posyandu\PosyanduController@getAll');
+        Route::post('delete ','API\Posyandu\PosyanduController@destroy');
+    });
+});
+
+Route::group(['prefix'=>'kader'],function(){
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::post('tambah','API\Kader\KaderController@store');
+        Route::post('update','API\Kader\KaderController@update');
+        Route::get('read','API\Kader\KaderController@getAll');
+        Route::post('delete ','API\Kader\KaderController@destroy');
+    });
+});
+
+
